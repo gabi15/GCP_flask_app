@@ -3,20 +3,28 @@ from db import get_songs, add_songs
 
 app = Flask(__name__)
 
-@app.route('/songs', methods=['POST', 'GET'])
-def songs():
+@app.route('/create', methods=['POST', 'GET'])
+def create_song():
     if request.method == 'POST':
-        if not request.is_json:
-            return jsonify({"msg": "Missing JSON in request"}), 400  
+        title = request.form['title']
+        artist = request.form['artist']
+        genre = request.form['genre']
 
-        add_songs(request.get_json())
-        return 'Song Added'
-
-    return get_songs()    
+        if not title:
+            flash('Title is required!')
+        elif not artist:
+            flash('Artist is required!')
+        elif not genre:
+            flash('Genre is required!')
+        else:
+            add_songs({"title":title, "artist":artist, "genre":genre})
+            return redirect(url_for('index'))
+    return render_template('create.html')        
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    songs = get_songs()
+    return render_template('index.html', songs=songs)
 
 #run server
 if __name__ == '__main__':

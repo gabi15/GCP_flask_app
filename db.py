@@ -1,4 +1,3 @@
-#db.py
 import os
 import pymysql
 from flask import jsonify
@@ -30,7 +29,7 @@ def get_songs():
         if result > 0:
             got_songs = jsonify(songs)
         else:
-            got_songs = 'No Songs in DB'
+            got_songs = None
     conn.close()
     return got_songs
 

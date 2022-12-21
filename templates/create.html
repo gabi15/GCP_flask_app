@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Add a new song {% endblock %}</h1>
+    <form method="post">
+        <label for="title">Title</label>
+        <br>
+        <input type="text" name="title"
+               placeholder="Song title"
+               value="{{ request.form['title'] }}"></input>
+        <br>
+
+        <label for="artist">Artist</label>
+        <br>
+        <input type="text" name="Artist"
+               placeholder="ARtist"
+               value="{{ request.form['artist'] }}"></input>
+        <br>
+
+        <label for="genre">Genre</label>
+        <br>
+        <input type="text" name="Genre"
+        placeholder="Genre"
+        value="{{ request.form['genre'] }}"></input>
+         <br>
+
+
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
