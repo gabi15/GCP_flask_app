@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, json
+from flask import Flask, jsonify, request, render_template, json, redirect, url_for, flash
 from db import get_songs, add_songs
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def create_song():
             flash('Genre is required!')
         else:
             add_songs(jsonify({"title": title, "artist": artist, "genre": genre}))
-            return redirect(url_for('index'))
+            return redirect(url_for('home'))
     return render_template('create.html')        
 
 
