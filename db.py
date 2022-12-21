@@ -27,7 +27,7 @@ def get_songs():
         result = cursor.execute('SELECT * FROM songs;')
         songs = cursor.fetchall()
         if result > 0:
-            got_songs = jsonify(songs)
+            got_songs = json.dumps(songs)
         else:
             got_songs = None
     conn.close()
