@@ -1,6 +1,6 @@
 import os
 import pymysql
-from flask import jsonify, json
+from flask import jsonify
 
 db_user = os.environ.get('CLOUD_SQL_USERNAME')
 db_password = os.environ.get('CLOUD_SQL_PASSWORD')
@@ -26,12 +26,12 @@ def get_songs():
     with conn.cursor() as cursor:
         result = cursor.execute('SELECT * FROM songs;')
         songs = cursor.fetchall()
-        rowarray_list = []
-        for row in songs:
-            t = {"title":row[0], "genre" : row[1],"title": row[3]}
-            rowarray_list.append(t)
+        if result > 0:
+            got_songs = jsonify(songs)
+        else:
+            got_songs = "No songs in db"
     conn.close()
-    return rowarray_list
+    return got_songs
 
 def add_songs(song):
     conn = open_connection()

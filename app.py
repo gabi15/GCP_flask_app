@@ -25,8 +25,7 @@ def create_song():
 
 @app.route('/')
 def home():
-    songs = get_songs()
-    return render_template('index.html', songs=songs)
+    return get_songs()
 
 
 if __name__ == '__main__':
