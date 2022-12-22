@@ -1,6 +1,7 @@
 import os
 import pymysql
 from flask import jsonify
+import logging
 
 db_user = os.environ.get('CLOUD_SQL_USERNAME')
 db_password = os.environ.get('CLOUD_SQL_PASSWORD')
@@ -16,6 +17,7 @@ def open_connection():
                             cursorclass=pymysql.cursors.DictCursor
                                 )
     except pymysql.MySQLError as e:
+        logging.error(e)
         print(e)
 
     return conn

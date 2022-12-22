@@ -28,7 +28,7 @@
 <body>
     <nav>
         <a href="{{ url_for('home') }}">All songs</a>
-        <a href="{{ url_for('create_song') }}">Create song</a>
+        <a href="{{ url_for('create_song') }}">Create a song</a>
     </nav>
     <div class="content">
         {% for message in get_flashed_messages() %}

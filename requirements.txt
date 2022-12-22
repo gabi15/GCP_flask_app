@@ -1,3 +1,4 @@
 Flask
 pymysql
 Jinja2
+google-cloud-logging
