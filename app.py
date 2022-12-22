@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, render_template, json, redirect, url_
 from db import get_songs, add_songs
 import google.cloud.logging
 import logging
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
