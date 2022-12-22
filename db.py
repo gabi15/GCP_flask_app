@@ -35,14 +35,3 @@ def add_songs(song):
         cursor.execute('INSERT INTO songs (title, artist, genre) VALUES(%s, %s, %s)', (song["title"], song["artist"], song["genre"]))
     conn.commit()
     conn.close()
-
-def get_songs():
-    return([    {
-        "artist": "Queen",
-        "genre": "rock",
-        "song_id": 1,
-        "title": "Crazy little thing called love"
-    }])
-
-def add songs(song):
-    return jsonify(song)    
