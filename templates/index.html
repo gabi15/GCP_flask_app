@@ -3,7 +3,7 @@
 {% block content %}
     <h1>{% block title %} Songs {% endblock %}</h1>
     {% for song in songs %}
-        <div class='message'>
+        <div class='song'>
             <h3>{{ song['title'] }}</h3>
             <p>{{ song['artist'] }}</p>
             <p>{{ song['genre'] }}</p>

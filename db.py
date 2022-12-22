@@ -24,14 +24,10 @@ def open_connection():
 def get_songs():
     conn = open_connection()
     with conn.cursor() as cursor:
-        result = cursor.execute('SELECT * FROM songs;')
+        cursor.execute('SELECT * FROM songs;')
         songs = cursor.fetchall()
-        if result > 0:
-            got_songs = jsonify(songs)
-        else:
-            got_songs = "No songs in db"
     conn.close()
-    return got_songs
+    return songs
 
 def add_songs(song):
     conn = open_connection()
@@ -39,3 +35,14 @@ def add_songs(song):
         cursor.execute('INSERT INTO songs (title, artist, genre) VALUES(%s, %s, %s)', (song["title"], song["artist"], song["genre"]))
     conn.commit()
     conn.close()
+
+def get_songs():
+    return([    {
+        "artist": "Queen",
+        "genre": "rock",
+        "song_id": 1,
+        "title": "Crazy little thing called love"
+    }])
+
+def add songs(song):
+    return jsonify(song)    

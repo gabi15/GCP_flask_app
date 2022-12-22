@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, render_template, json, redirect, url_
 from db import get_songs, add_songs
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'my secret key'
 
 
 @app.route('/create', methods=['POST', 'GET'])
@@ -18,14 +19,18 @@ def create_song():
         elif not genre:
             flash('Genre is required!')
         else:
-            add_songs(jsonify({"title": title, "artist": artist, "genre": genre}))
+            add_songs({"title": title, "artist": artist, "genre": genre})
             return redirect(url_for('home'))
     return render_template('create.html')        
 
 
+# @app.route('/')
+# def home():
+#     return get_songs()
 @app.route('/')
 def home():
-    return get_songs()
+    songs = get_songs()
+    return render_template('index.html', songs=songs)
 
 
 if __name__ == '__main__':
