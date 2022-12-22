@@ -34,6 +34,6 @@ def get_songs():
 def add_songs(song):
     conn = open_connection()
     with conn.cursor() as cursor:
-        cursor.execute('INSERT INTO songs (title, artist, genre) VALUES(%s, %s, %s)', (song["title"]+"!", song["artist"], song["genre"]))
+        cursor.execute('INSERT INTO songs (title, artist, genre) VALUES(%s, %s, %s)', (song["title"], song["artist"], song["genre"]))
     conn.commit()
     conn.close()
